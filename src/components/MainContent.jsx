@@ -100,10 +100,10 @@ const MainContent = ({ cardBg, borderColor }) => {
 
   return (
     <main className="flex-1 p-8 pr-10">
-      {/* Huge Header Text */}
+      {/* Huge Header Text
       <h1 className="text-6xl font-extrabold leading-tight tracking-tight mb-8">
         Turn any token <br /> into a perpetual machine
-      </h1>
+      </h1> */}
 
       <TokenSearchSection />
 

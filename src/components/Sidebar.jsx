@@ -38,7 +38,7 @@ const Sidebar = ({ cardBg, borderColor }) => {
         <FilterItem label="Market Cap" />
         <FilterItem label="Volumes" />
         <FilterItem label="Price" />
-        <FilterItem label="Coleers" />
+        <FilterItem label="Colors" />
       </div>
     </aside>
   );

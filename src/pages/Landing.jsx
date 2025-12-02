@@ -1,20 +1,33 @@
 import React from 'react';
 import Header from '../components/Header';
+import Hero from '../components/Hero';         
 import Sidebar from '../components/Sidebar';
 import MainContent from '../components/MainContent';
 
 const Landing = () => {
-  // Define dark colors to match the image
-  const darkBg = 'bg-black'; // Main container background
-  const cardBg = 'bg-gray-900/70'; // Card/section background
-  const borderColor = 'border-gray-800'; // Border color
+  const darkBg = 'bg-black'; 
+  const cardBg = 'bg-gray-900/70'; 
+  const borderColor = 'border-gray-800'; 
 
   return (
     <div className={`min-h-screen ${darkBg} text-white font-sans`}>
+      {/* 1. Header - Full width, fixed at top */}
       <Header />
-      <div className="flex pt-16"> {/* Adjust padding top for fixed header */}
-        <Sidebar cardBg={cardBg} borderColor={borderColor} />
-        <MainContent cardBg={cardBg} borderColor={borderColor} />
+      
+      {/* Main content with padding to account for fixed header */}
+      <div className="pt-[74px]"> {/* This pushes everything down below the fixed header */}
+        
+        {/* 2. Hero - Full width section */}
+        <Hero />
+        
+        {/* 3. Sidebar + Main Content - Side by side below hero */}
+        <div className="flex">
+          {/* Sidebar */}
+          <Sidebar cardBg={cardBg} borderColor={borderColor} />
+          
+          {/* Main Content - Takes remaining space */}
+          <MainContent cardBg={cardBg} borderColor={borderColor} />
+        </div>
       </div>
     </div>
   );
