@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Apply the dark background to the whole page body */
+body {
+  background-color: #0A0A0A; /* Use the primaryDark color defined in config */
+}
+
+/* If you decide to use a specific font like 'Inter', 
+  you would import it here using Google Fonts or a self-hosted method.
+  
+  Example (if using Google Fonts):
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+*/
