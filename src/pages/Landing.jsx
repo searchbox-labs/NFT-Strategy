@@ -9,7 +9,7 @@ import TopPerformers from '../components/TopPerformers';
 import StrategyTable from '../components/StrategyTable';
 import TradingToday from '../components/TradingToday';
 
-const App = () => {
+const Landing = () => {
   const darkBg = 'bg-black'; 
   const cardBg = 'bg-gray-900/70'; 
   const borderColor = 'border-gray-800'; 
@@ -58,4 +58,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default Landing;

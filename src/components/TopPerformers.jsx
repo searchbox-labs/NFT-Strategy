@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArrowUp } from 'lucide-react';
 
+// Define StrategyCard component first
 const StrategyCard = ({ rank, title, token, volume, color, cardBg, borderColor }) => (
   <div className={`p-4 rounded-xl ${cardBg} border ${borderColor} hover:border-purple-500 transition cursor-pointer`}>
     <div className="flex justify-between items-start">
@@ -19,6 +20,19 @@ const StrategyCard = ({ rank, title, token, volume, color, cardBg, borderColor }
         </div>
       </div>
       <ArrowUp className="w-4 h-4 text-green-400 flex-shrink-0 mt-1" />
+    </div>
+  </div>
+);
+
+// Define TradingCard component
+const TradingCard = ({ title, token, color, shortName, isBull, cardBg, borderColor }) => (
+  <div className={`flex items-center p-3 rounded-lg ${cardBg} border ${borderColor} hover:border-yellow-500 transition cursor-pointer`}>
+    <div className={`w-5 h-5 rounded-lg mr-3 flex-shrink-0`} style={{ backgroundColor: color }}></div>
+    <div>
+      <div className="text-xs font-semibold">{title}</div>
+      <div className={`text-xs ${isBull ? 'text-yellow-500' : 'text-red-500'} font-medium mt-0.5`}>
+        {isBull ? 'BULL' : 'SHORT'} <span className="text-gray-400 ml-1">{shortName}</span>
+      </div>
     </div>
   </div>
 );
