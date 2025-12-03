@@ -1,7 +1,13 @@
 import React from 'react';
 import { ExternalLink, TrendingUp, TrendingDown, MoreVertical } from 'lucide-react';
 
-const StrategyTable = () => {
+const StrategyTable = ({ 
+  currentPage, 
+  rowsPerPage, 
+  onPageChange, 
+  onRowsPerPageChange 
+}) => {
+
   const tableData = [
     {
       strategy: "PunkStrategy",
@@ -155,6 +161,30 @@ const StrategyTable = () => {
     },
   ];
 
+  // Pagination logic
+  const totalPages = 6;
+  const startIndex = (currentPage - 1) * rowsPerPage;
+  const endIndex = startIndex + rowsPerPage;
+  const currentData = tableData.slice(startIndex, endIndex);
+
+  const handlePrevious = () => {
+    if (currentPage > 1) {
+      onPageChange(currentPage - 1);
+    }
+  };
+
+  const handleNext = () => {
+    if (currentPage < totalPages) {
+      onPageChange(currentPage + 1);
+    }
+  };
+
+  const handleRowsPerPageChange = (e) => {
+    onRowsPerPageChange(parseInt(e.target.value));
+    onPageChange(1); // Reset to first page when changing rows per page
+  };
+
+
   const TableRow = ({ data }) => (
     <tr className="border-b border-gray-800/50 hover:bg-gray-900/30 transition">
       <td className="py-3 px-4">
@@ -273,34 +303,88 @@ const StrategyTable = () => {
         </div>
 
         {/* Pagination */}
-        <div className="flex items-center justify-between px-6 py-4 border-t border-gray-800">
-          <div className="flex items-center space-x-4">
+        <div className="flex flex-col md:flex-row items-center justify-between px-4 md:px-6 py-4 border-t border-gray-800">
+          <div className="flex items-center space-x-2 md:space-x-4 mb-4 md:mb-0">
             <span className="text-sm text-gray-400">Rows</span>
-            <select className="bg-gray-800 border border-gray-700 rounded-lg px-3 py-1.5 text-sm">
-              <option>20</option>
-              <option>50</option>
-              <option>100</option>
+            <select 
+              value={rowsPerPage}
+              onChange={handleRowsPerPageChange}
+              className="bg-gray-800 border border-gray-700 rounded-lg px-3 py-1.5 text-sm"
+            >
+              <option value={10}>10</option>
+              <option value={20}>20</option>
+              <option value={50}>50</option>
+              <option value={100}>100</option>
             </select>
-            <span className="text-sm text-gray-400">Page 1 of 6</span>
+            <span className="text-sm text-gray-400">
+              Page {currentPage} of {totalPages}
+            </span>
           </div>
           
           <div className="flex items-center space-x-2">
-            <button className="px-3 py-1.5 text-sm border border-gray-700 rounded-lg hover:bg-gray-800 transition">
+            <button 
+              onClick={handlePrevious}
+              disabled={currentPage === 1}
+              className={`px-3 py-1.5 text-sm border border-gray-700 rounded-lg transition ${
+                currentPage === 1 
+                  ? 'opacity-50 cursor-not-allowed' 
+                  : 'hover:bg-gray-800'
+              }`}
+            >
               ← Previous
             </button>
-            {[1, 2, 3, 4, 5, 6].map((page) => (
-              <button
-                key={page}
-                className={`px-3 py-1.5 text-sm rounded-lg transition ${
-                  page === 1
-                    ? 'bg-purple-600 text-white'
-                    : 'text-gray-400 hover:bg-gray-800'
-                }`}
-              >
-                {page}
-              </button>
-            ))}
-            <button className="px-3 py-1.5 text-sm border border-gray-700 rounded-lg hover:bg-gray-800 transition">
+            
+            {/* Page numbers */}
+            <div className="flex space-x-1">
+              {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
+                let pageNum;
+                if (totalPages <= 5) {
+                  pageNum = i + 1;
+                } else if (currentPage <= 3) {
+                  pageNum = i + 1;
+                } else if (currentPage >= totalPages - 2) {
+                  pageNum = totalPages - 4 + i;
+                } else {
+                  pageNum = currentPage - 2 + i;
+                }
+                
+                return (
+                  <button
+                    key={pageNum}
+                    onClick={() => onPageChange(pageNum)}
+                    className={`px-3 py-1.5 text-sm rounded-lg transition ${
+                      pageNum === currentPage
+                        ? 'bg-purple-600 text-white'
+                        : 'text-gray-400 hover:bg-gray-800'
+                    }`}
+                  >
+                    {pageNum}
+                  </button>
+                );
+              })}
+              
+              {totalPages > 5 && currentPage < totalPages - 2 && (
+                <>
+                  <span className="px-2 py-1.5 text-gray-400">...</span>
+                  <button
+                    onClick={() => onPageChange(totalPages)}
+                    className="px-3 py-1.5 text-sm rounded-lg text-gray-400 hover:bg-gray-800 transition"
+                  >
+                    {totalPages}
+                  </button>
+                </>
+              )}
+            </div>
+            
+            <button 
+              onClick={handleNext}
+              disabled={currentPage === totalPages}
+              className={`px-3 py-1.5 text-sm border border-gray-700 rounded-lg transition ${
+                currentPage === totalPages 
+                  ? 'opacity-50 cursor-not-allowed' 
+                  : 'hover:bg-gray-800'
+              }`}
+            >
               Next →
             </button>
           </div>

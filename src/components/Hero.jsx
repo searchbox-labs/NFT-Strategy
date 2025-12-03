@@ -21,15 +21,15 @@ const Hero = () => {
 
   return (
     <div 
-      className="relative w-full h-[60vh] min-h-[500px] bg-black flex items-end" 
+      className="relative w-full h-[50vh] md:h-[60vh] min-h-[400px] md:min-h-[500px] bg-black flex items-end" 
       style={backgroundStyle}
     >
 
       {/* Hero Text - Bottom left corner, NO auto margins, align to left edge */}
-      <div className="relative z-20 w-full px-8 pb-12"> 
+      <div className="relative z-20 w-full px-4 md:px-8 pb-8 md:pb-1"> 
         {/* Remove mx-auto and use a container that matches your sidebar + content layout */}
         <div className="w-full">
-          <h1 className="text-7xl font-extrabold leading-tight tracking-tight text-white max-w-4xl">
+          <h1 className="text-7xl md:text-6xl lg:text-7xl font-extrabold leading-tight tracking-tight text-white max-w-4xl">
             Turn conviction into a narrative trading machine
           </h1>
         </div>
