@@ -7,7 +7,6 @@ import TrendingToday from '../components/TrendingToday';
 import LatestStrategies from '../components/LatestStrategies';
 import TopPerformers from '../components/TopPerformers';
 import StrategyTable from '../components/StrategyTable';
-import TradingToday from '../components/TradingToday';
 
 const Landing = () => {
   const darkBg = 'bg-black'; 
@@ -26,9 +25,11 @@ const Landing = () => {
         <Hero />
         
         {/* 3. Token Search Section - Full width */}
-        <TokenSearchSection cardBg={cardBg} borderColor={borderColor} />
+        <div className="px-8">
+          <TokenSearchSection cardBg={cardBg} borderColor={borderColor} />
+        </div>
         
-        {/* 4. Two-column layout */}
+        {/* 4. Two-column layout for Trending/Top Performers and Latest Strategies */}
         <div className="flex px-8 mb-8 gap-8">
           {/* Left Column: Trending Today + Top Performers Today */}
           <div className="w-1/2 space-y-8">
@@ -43,16 +44,9 @@ const Landing = () => {
         </div>
         
         {/* 5. Sidebar + Table - Side by side */}
-        <div className="flex px-8">
-          <div className="w-64 mr-6">
-            <Sidebar cardBg={cardBg} borderColor={borderColor} />
-          </div>
+        <div className="flex px-8 gap-6">
+          <Sidebar cardBg={cardBg} borderColor={borderColor} />
           <StrategyTable />
-        </div>
-        
-        {/* 6. Trading Today */}
-        <div className="px-8 mt-8">
-          <TradingToday cardBg={cardBg} borderColor={borderColor} />
         </div>
       </div>
     </div>

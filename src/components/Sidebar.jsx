@@ -1,44 +1,93 @@
 import React from 'react';
-import { Search, ChevronDown, CheckCircle, X, Maximize, Minus, User } from 'lucide-react';
+import { Filter, ChevronDown, ChevronUp } from 'lucide-react';
 
 const Sidebar = ({ cardBg, borderColor }) => {
-  const FilterItem = ({ label }) => (
-    <div className="flex justify-between items-center py-2 px-4 hover:bg-gray-800/50 cursor-pointer rounded-lg">
-      <span className="text-sm text-gray-300">{label}</span>
-      <Maximize className="w-3 h-3 text-gray-500" />
-    </div>
-  );
+  const FilterSection = ({ title, filters, defaultOpen = true }) => {
+    const [isOpen, setIsOpen] = React.useState(defaultOpen);
+    
+    return (
+      <div className={`mb-4 rounded-lg ${cardBg} border ${borderColor}`}>
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="flex items-center justify-between w-full p-4 text-left"
+        >
+          <div className="flex items-center">
+            <Filter className="w-4 h-4 mr-2 text-gray-400" />
+            <span className="text-sm font-medium text-gray-300">{title}</span>
+          </div>
+          {isOpen ? (
+            <ChevronUp className="w-4 h-4 text-gray-400" />
+          ) : (
+            <ChevronDown className="w-4 h-4 text-gray-400" />
+          )}
+        </button>
+        
+        {isOpen && (
+          <div className="px-4 pb-4 space-y-2">
+            {filters.map((filter, index) => (
+              <label key={index} className="flex items-center cursor-pointer hover:bg-gray-800/30 p-1 rounded">
+                <input
+                  type="checkbox"
+                  className="w-3 h-3 mr-3 rounded bg-gray-700 border-gray-600 text-purple-600 focus:ring-purple-600 focus:ring-offset-gray-800"
+                />
+                <span className="text-sm text-gray-400">{filter}</span>
+              </label>
+            ))}
+          </div>
+        )}
+      </div>
+    );
+  };
+
+  const filterSections = [
+    {
+      title: "Market Cap",
+      filters: ["Below $10K", "Below $100K", "Below $1M", "$1M and above"]
+    },
+    {
+      title: "24h Volume",
+      filters: ["Below $1K", "$1K - $10K", "$10K - $100K", "$100K and above"]
+    },
+    {
+      title: "Holdings",
+      filters: ["Below 10", "10 - 50", "50 - 100", "100 and above"]
+    },
+    {
+      title: "Burn %",
+      filters: ["Below 10%", "10% - 25%", "25% - 50%", "50% and above"]
+    },
+    {
+      title: "Date Created",
+      filters: ["Last 24 hours", "Last 7 days", "Last 30 days", "All time"]
+    }
+  ];
 
   return (
-    <aside className="w-64 flex-shrink-0 p-4 pt-0">
-      {/* Search Bar at the top of the sidebar */}
-      <div className="flex items-center justify-between p-3 mb-4 mt-2">
-         {/* Placeholder for the main title/text */}
-      </div>
-
-      {/* Filters Section */}
-      <div className={`p-4 rounded-xl ${cardBg} border ${borderColor} mb-4`}>
-        <h3 className="text-sm font-semibold mb-3 text-gray-300">Strategy Filters</h3>
-        <div className="text-sm text-gray-400 mb-4 leading-relaxed">
-          Reviewing all strategies. Filter by token or strategy type see filter list specific categories.
+    <aside className="w-64 flex-shrink-0">
+      <div className="sticky top-24 space-y-2">
+        <div className="mb-4">
+          <h3 className="text-lg font-semibold text-white mb-2">Filters</h3>
+          <p className="text-sm text-gray-400">Filter strategies by different metrics</p>
         </div>
-        <div className="flex items-center justify-between text-xs">
-          <button className="text-green-500 font-medium hover:text-green-400">
-            Learn More
-          </button>
-          <button className="text-gray-500 hover:text-gray-400 flex items-center">
-             <X className="w-3 h-3 mr-1" />
-             Dismiss
-          </button>
-        </div>
-      </div>
-
-      {/* Main Filter List */}
-      <div className="space-y-1">
-        <FilterItem label="Market Cap" />
-        <FilterItem label="Volumes" />
-        <FilterItem label="Price" />
-        <FilterItem label="Colors" />
+        
+        {filterSections.map((section, index) => (
+          <FilterSection
+            key={index}
+            title={section.title}
+            filters={section.filters}
+            defaultOpen={index === 0}
+          />
+        ))}
+        
+        {/* Apply Filters Button */}
+        <button className="w-full py-3 bg-purple-600 hover:bg-purple-700 text-white font-medium rounded-lg transition">
+          Apply Filters
+        </button>
+        
+        {/* Clear All Button */}
+        <button className="w-full py-2 text-gray-400 hover:text-white font-medium text-sm">
+          Clear All
+        </button>
       </div>
     </aside>
   );
