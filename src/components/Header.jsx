@@ -8,7 +8,7 @@ const Header = () => {
         {/* Left Section - Logo and Search */}
         <div className="flex items-center space-x-6">
           <div className="text-lg font-bold text-white tracking-wider">
-            NFT Strategy
+            Stage
           </div>
           <div className="flex items-center bg-gray-900 rounded-lg px-3 py-1.5 w-72 border border-gray-700/50">
             <Search className="w-4 h-4 text-gray-500 mr-2" />

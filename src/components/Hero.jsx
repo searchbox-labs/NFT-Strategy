@@ -30,7 +30,7 @@ const Hero = () => {
         {/* Remove mx-auto and use a container that matches your sidebar + content layout */}
         <div className="w-full">
           <h1 className="text-7xl font-extrabold leading-tight tracking-tight text-white max-w-4xl">
-            Turn any token <br /> into a perpetual machine
+            Turn conviction into a narrative trading machine
           </h1>
         </div>
       </div>

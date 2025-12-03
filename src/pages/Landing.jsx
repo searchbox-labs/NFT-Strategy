@@ -28,20 +28,21 @@ const Landing = () => {
         {/* 3. Token Search Section - Full width */}
         <TokenSearchSection cardBg={cardBg} borderColor={borderColor} />
         
-        {/* 4. Trending Today + Latest Strategies - Side by side */}
-        <div className="flex mb-8">
-          <div className="flex-1">
+        {/* 4. Two-column layout */}
+        <div className="flex px-8 mb-8 gap-8">
+          {/* Left Column: Trending Today + Top Performers Today */}
+          <div className="w-1/2 space-y-8">
             <TrendingToday cardBg={cardBg} borderColor={borderColor} />
+            <TopPerformers cardBg={cardBg} borderColor={borderColor} />
           </div>
-          <div className="flex-1">
+          
+          {/* Right Column: Latest Strategies */}
+          <div className="w-1/2">
             <LatestStrategies cardBg={cardBg} borderColor={borderColor} />
           </div>
         </div>
         
-        {/* 5. Top Performers Today - Full width */}
-        <TopPerformers cardBg={cardBg} borderColor={borderColor} />
-        
-        {/* 6. Sidebar + Table - Side by side */}
+        {/* 5. Sidebar + Table - Side by side */}
         <div className="flex px-8">
           <div className="w-64 mr-6">
             <Sidebar cardBg={cardBg} borderColor={borderColor} />
@@ -49,7 +50,7 @@ const Landing = () => {
           <StrategyTable />
         </div>
         
-        {/* 7. Trading Today - Placed appropriately (you can adjust position) */}
+        {/* 6. Trading Today */}
         <div className="px-8 mt-8">
           <TradingToday cardBg={cardBg} borderColor={borderColor} />
         </div>

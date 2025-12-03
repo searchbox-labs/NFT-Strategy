@@ -1,9 +1,8 @@
 import React from 'react';
 import { ArrowUp } from 'lucide-react';
 
-// Define StrategyCard component first
-const StrategyCard = ({ rank, title, token, volume, color, cardBg, borderColor }) => (
-  <div className={`p-4 rounded-xl ${cardBg} border ${borderColor} hover:border-purple-500 transition cursor-pointer`}>
+const StrategyCard = ({ rank, title, token, volume, color }) => (
+  <div className="flex-shrink-0 w-64 p-4 rounded-xl bg-gray-900/70 border border-gray-800 hover:border-purple-500 transition cursor-pointer">
     <div className="flex justify-between items-start">
       <div className="flex items-center">
         <div className={`w-9 h-9 rounded-md mr-3 flex-shrink-0`} style={{ backgroundColor: color }}>
@@ -24,52 +23,41 @@ const StrategyCard = ({ rank, title, token, volume, color, cardBg, borderColor }
   </div>
 );
 
-// Define TradingCard component
-const TradingCard = ({ title, token, color, shortName, isBull, cardBg, borderColor }) => (
-  <div className={`flex items-center p-3 rounded-lg ${cardBg} border ${borderColor} hover:border-yellow-500 transition cursor-pointer`}>
-    <div className={`w-5 h-5 rounded-lg mr-3 flex-shrink-0`} style={{ backgroundColor: color }}></div>
+const TopPerformers = ({ cardBg, borderColor }) => {
+  // Mock data for horizontal scrolling
+  const performersData = [
+    { rank: "#1", title: "Ape(10)T...", token: "APE10", volume: "45.2K", color: "transparent" },
+    { rank: "#2", title: "Prophet...", token: "PROPH", volume: "38.7K", color: "#33cc33" },
+    { rank: "#3", title: "MoonShot...", token: "MOON", volume: "32.1K", color: "#9b59b6" },
+    { rank: "#4", title: "DeFi King...", token: "DFK", volume: "28.9K", color: "#3498db" },
+    { rank: "#5", title: "NFT Maxi...", token: "NFTM", volume: "25.6K", color: "#e74c3c" },
+    { rank: "#6", title: "Yield Farm...", token: "YLD", volume: "22.3K", color: "#f1c40f" },
+    { rank: "#7", title: "GameFi Pro...", token: "GAME", volume: "19.8K", color: "#e67e22" },
+    { rank: "#8", title: "Liquid Stkr...", token: "LST", volume: "17.4K", color: "#2ecc71" },
+  ];
+
+  return (
     <div>
-      <div className="text-xs font-semibold">{title}</div>
-      <div className={`text-xs ${isBull ? 'text-yellow-500' : 'text-red-500'} font-medium mt-0.5`}>
-        {isBull ? 'BULL' : 'SHORT'} <span className="text-gray-400 ml-1">{shortName}</span>
+      <div className="flex justify-between items-center mb-4">
+        <h3 className="text-base font-semibold text-gray-300">Top Performers Today</h3>
+        <div className="flex space-x-2">
+          <button className="text-xs text-gray-400 hover:text-white">←</button>
+          <button className="text-xs text-gray-400 hover:text-white">→</button>
+        </div>
+      </div>
+      <div className="relative overflow-hidden group">
+        {/* Horizontal auto-scrolling container */}
+        <div className="flex space-x-4 animate-scroll-horizontal-reverse">
+          {[...performersData, ...performersData].map((item, index) => (
+            <StrategyCard key={index} {...item} />
+          ))}
+        </div>
+        {/* Fade edges */}
+        <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-black to-transparent"></div>
+        <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-black to-transparent"></div>
       </div>
     </div>
-  </div>
-);
-
-const TopPerformers = ({ cardBg, borderColor }) => (
-  <div className="px-8 mb-8">
-    <h3 className="text-base font-semibold text-gray-300 mb-4">Top Performers Today</h3>
-    <div className="grid grid-cols-3 gap-4">
-      <StrategyCard
-        rank="#9"
-        title="Ape(10)T..."
-        token="SEKSTR"
-        volume="16.57K"
-        color="transparent"
-        cardBg={cardBg}
-        borderColor={borderColor}
-      />
-      <TradingCard
-        title="Wall Street"
-        token="MARELSSTR"
-        color="#33cc33"
-        shortName="MARELsSTR"
-        isBull={true}
-        cardBg={cardBg}
-        borderColor={borderColor}
-      />
-      <TradingCard
-        title="ETH"
-        token="SMAISSTR"
-        color="#ffcc00"
-        shortName="SMAISsTR"
-        isBull={true}
-        cardBg={cardBg}
-        borderColor={borderColor}
-      />
-    </div>
-  </div>
-);
+  );
+};
 
 export default TopPerformers;
