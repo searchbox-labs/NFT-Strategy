@@ -262,34 +262,34 @@ const StrategyTable = ({
       <div className="rounded-xl border border-gray-800 bg-gray-900/30 overflow-hidden">
         {/* Table Header */}
         <div className="overflow-x-auto">
-          <table className="w-full">
+          <table className="w-full min-w-[800px]">
             <thead>
               <tr className="border-b border-gray-800 bg-gray-900/50">
-                <th className="py-3 px-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">
+                <th className="py-2 px-2 md:py-3 md:px-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">
                   Strategy
                 </th>
-                <th className="py-3 px-4 text-center text-xs font-semibold text-gray-400 uppercase tracking-wider">
+                <th className="py-2 px-2 md:py-3 md:px-4 text-center text-xs font-semibold text-gray-400 uppercase tracking-wider">
                   Holdings
                 </th>
-                <th className="py-3 px-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">
+                <th className="py-2 px-2 md:py-3 md:px-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">
                   Progress
                 </th>
-                <th className="py-3 px-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">
+                <th className="py-2 px-2 md:py-3 md:px-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">
                   Price
                 </th>
-                <th className="py-3 px-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">
+                <th className="py-2 px-2 md:py-3 md:px-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">
                   Volume 24h
                 </th>
-                <th className="py-3 px-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">
+                <th className="py-2 px-2 md:py-3 md:px-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">
                   Market Cap
                 </th>
-                <th className="py-3 px-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">
+                <th className="py-2 px-2 md:py-3 md:px-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">
                   Burned
                 </th>
-                <th className="py-3 px-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">
+                <th className="py-2 px-2 md:py-3 md:px-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">
                   24h %
                 </th>
-                <th className="py-3 px-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">
+                <th className="py-2 px-2 md:py-3 md:px-4 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">
                   Actions
                 </th>
               </tr>
@@ -392,7 +392,7 @@ const StrategyTable = ({
       </div>
 
       {/* Summary Stats */}
-      <div className="mt-6 grid grid-cols-5 gap-4">
+      <div className="mt-6 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
         {summaryStats.map((stat, index) => (
           <div 
             key={index} 

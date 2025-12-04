@@ -29,7 +29,7 @@ const Hero = () => {
       <div className="relative z-20 w-full px-4 md:px-8 pb-8 md:pb-1"> 
         {/* Remove mx-auto and use a container that matches your sidebar + content layout */}
         <div className="w-full">
-          <h1 className="text-7xl md:text-6xl lg:text-7xl font-extrabold leading-tight tracking-tight text-white max-w-4xl">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight tracking-tight text-white max-w-4xl">
             Turn conviction into a narrative trading machine
           </h1>
         </div>
